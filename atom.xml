@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>东的博客</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2023-04-05T06:59:45.902Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>东</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>杂记（1）</title>
+    <link href="http://example.com/2023/04/05/%E6%9D%82%E8%AE%B0%EF%BC%881%EF%BC%89/"/>
+    <id>http://example.com/2023/04/05/%E6%9D%82%E8%AE%B0%EF%BC%881%EF%BC%89/</id>
+    <published>2023-04-05T06:58:02.000Z</published>
+    <updated>2023-04-05T06:59:45.902Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是一篇关于追剧的笔记</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;这是一篇关于追剧的笔记&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
