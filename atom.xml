@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-04-05T06:59:45.902Z</updated>
+  <updated>2023-04-09T10:49:43.882Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,15 +21,16 @@
     <link href="http://example.com/2023/04/05/%E6%9D%82%E8%AE%B0%EF%BC%881%EF%BC%89/"/>
     <id>http://example.com/2023/04/05/%E6%9D%82%E8%AE%B0%EF%BC%881%EF%BC%89/</id>
     <published>2023-04-05T06:58:02.000Z</published>
-    <updated>2023-04-05T06:59:45.902Z</updated>
+    <updated>2023-04-09T10:49:43.882Z</updated>
     
-    <content type="html"><![CDATA[<p>这是一篇关于追剧的笔记</p>]]></content>
+    <content type="html"><![CDATA[<p><em>不注重研究现状，不注重研究历史，不注重马克思列宁主义的应用，这些都是极坏的作风。</em></p><p>​                              出自《改造我们的学习》毛泽东 </p><p>了解过去，掌握规律，把握当下</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;这是一篇关于追剧的笔记&lt;/p&gt;
-</summary>
+    <summary type="html">&lt;p&gt;&lt;em&gt;不注重研究现状，不注重研究历史，不注重马克思列宁主义的应用，这些都是极坏的作风。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;​																	                              出自《改造我们的学习》毛泽东 &lt;/p&gt;
+&lt;p&gt;了解过去，掌握规律</summary>
       
     
     
