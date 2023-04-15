@@ -20,23 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.13.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="东的博客">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="ActivityManager提供了关于Activity，Service信息，大多数场景下不需要使用，但是其中也提供了几个重要的方法，比如isLowRamDevice，判读是否运行在一个低内存手机上，或者clearApplicationUserData 重置应用数据。 如果应用需要同Task stack打交道，也可能会用到其中的ActivityManager.AppTask和ActivityMan">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ActivityManager简要分析">
+<meta property="og:url" content="http://example.com/2023/04/15/ActivityManager%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="东的博客">
+<meta property="og:description" content="ActivityManager提供了关于Activity，Service信息，大多数场景下不需要使用，但是其中也提供了几个重要的方法，比如isLowRamDevice，判读是否运行在一个低内存手机上，或者clearApplicationUserData 重置应用数据。 如果应用需要同Task stack打交道，也可能会用到其中的ActivityManager.AppTask和ActivityMan">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-04-15T07:28:23.000Z">
+<meta property="article:modified_time" content="2023-04-15T08:11:20.877Z">
 <meta property="article:author" content="东">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2023/04/15/ActivityManager%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/04/15/ActivityManager%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90/","path":"2023/04/15/ActivityManager简要分析/","title":"ActivityManager简要分析"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>东的博客</title>
+<title>ActivityManager简要分析 | 东的博客</title>
   
 
 
@@ -68,7 +72,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">东的博客</h1>
+      <p class="site-title">东的博客</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -154,16 +158,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/15/ActivityManager%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -177,13 +182,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 东的博客">
+      <meta itemprop="name" content="ActivityManager简要分析 | 东的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/15/ActivityManager%E7%AE%80%E8%A6%81%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">ActivityManager简要分析</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          ActivityManager简要分析
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -207,7 +212,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>ActivityManager提供了关于Activity，Service信息，大多数场景下不需要使用，但是其中也提供了几个重要的方法，比如isLowRamDevice，判读是否运行在一个低内存手机上，或者clearApplicationUserData 重置应用数据。</p>
+        <p>ActivityManager提供了关于Activity，Service信息，大多数场景下不需要使用，但是其中也提供了几个重要的方法，比如isLowRamDevice，判读是否运行在一个低内存手机上，或者clearApplicationUserData 重置应用数据。</p>
 <p>如果应用需要同Task stack打交道，也可能会用到其中的ActivityManager.AppTask和ActivityManager.RecentTaskInfo,另外还涉及到一些进程相关的api</p>
 <p>ActivityManager交互的对象很多，比如像最近任务、进程、服务等等。</p>
 <p><b><font color="#dd0000">Task相关</font></b></p>
@@ -283,7 +288,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">killBackgroundProcesses</span><span class="params">(String packageName)</span> &#123;</span><br><span class="line">     <span class="keyword">try</span> &#123;</span><br><span class="line">         getService().killBackgroundProcesses(packageName,</span><br><span class="line">                 mContext.getUserId());</span><br><span class="line">     &#125; <span class="keyword">catch</span> (RemoteException e) &#123;</span><br><span class="line">         <span class="keyword">throw</span> e.rethrowFromSystemServer();</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
-      
     </div>
 
     
@@ -291,303 +295,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/04/15/Android%E5%8C%85%E5%88%86%E6%9E%90/" rel="prev" title="Android包结构分析">
+                  <i class="fa fa-chevron-left"></i> Android包结构分析
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/15/Android%E5%8C%85%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="东">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 东的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/15/Android%E5%8C%85%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">Android包结构分析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-04-15 10:52:17 / 修改时间：15:28:31" itemprop="dateCreated datePublished" datetime="2023-04-15T10:52:17+08:00">2023-04-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>好比用java的要熟悉jdk，Android的jar包也是需要深入了解，才能在宏观上有所把握。</p>
-<ul>
-<li>android<br>  - app<br>  - content<br>  - service<br>  - View</li>
-<li>dalvik<ul>
-<li>system</li>
-</ul>
-</li>
-</ul>
-<p>以上几个包的内容都是目前需要重点掌握的，后面的源码分析也按照这个顺序为主</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/15/Activity%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="东">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 东的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/15/Activity%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">Activity分析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-04-15 10:52:17 / 修改时间：14:07:36" itemprop="dateCreated datePublished" datetime="2023-04-15T10:52:17+08:00">2023-04-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Activity作为四大组件之一，其重要性不言而喻。但是之前对于Activity的了解也只是限于生命周期，启动流程等过程，比较零散，没有系统的整理。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Activity</span> <span class="keyword">extends</span> <span class="title class_">ContextThemeWrapper</span></span><br><span class="line">        <span class="keyword">implements</span> <span class="title class_">LayoutInflater</span>.Factory2,</span><br><span class="line">        Window.Callback, KeyEvent.Callback,</span><br><span class="line">        OnCreateContextMenuListener, ComponentCallbacks2,</span><br><span class="line">        Window.OnWindowDismissedCallback,</span><br><span class="line">        AutofillManager.AutofillClient, ContentCaptureManager.ContentCaptureClient </span><br></pre></td></tr></table></figure>
-
-<p>从继承和实现关系上看，Activity继承自ContextThemeWrapper，同时实现了以下几个接口，从接口名称上大致可以判断，Activity还要和View，Window，KeyEvent等进行交互。所以也不仅仅是限于生命周期管理这么简单。</p>
-<p>下面是一些重要的属性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Instrumentation mInstrumentation;</span><br><span class="line"><span class="keyword">private</span> IBinder mToken;</span><br><span class="line"><span class="keyword">private</span> IBinder mShareableActivityToken;</span><br><span class="line"><span class="keyword">private</span> Application mApplication;</span><br><span class="line"><span class="comment">/*package*/</span> Intent mIntent;</span><br><span class="line"><span class="keyword">private</span> ComponentName mComponent;</span><br><span class="line"><span class="comment">/*package*/</span> ActivityInfo mActivityInfo;</span><br><span class="line"><span class="comment">/*package*/</span> ActivityThread mMainThread;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> ArrayList&lt;Application.ActivityLifecycleCallbacks&gt; mActivityLifecycleCallbacks =</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Application.ActivityLifecycleCallbacks&gt;();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Window mWindow;</span><br><span class="line"><span class="keyword">private</span> WindowManager mWindowManager;</span><br><span class="line"><span class="comment">/*package*/</span> <span class="type">View</span> <span class="variable">mDecor</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="type">Handler</span> <span class="variable">mHandler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Handler</span>();</span><br><span class="line"><span class="keyword">final</span> <span class="type">FragmentController</span> <span class="variable">mFragments</span> <span class="operator">=</span> FragmentController.createController(<span class="keyword">new</span> <span class="title class_">HostCallbacks</span>());</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Thread mUiThread;</span><br><span class="line"><span class="keyword">private</span> SplashScreen mSplashScreen;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>可以看到Activity很忙，跟它交互的对象有很多。一个个看</p>
-<ul>
-<li><p>mInstrumentation</p>
-<p>在代码中搜索它的作用只不过是对Activity的一些生命周期操作进行转发，如</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">startActivityForResult</span><span class="params">(<span class="meta">@RequiresPermission</span> Intent intent, <span class="type">int</span> requestCode,</span></span><br><span class="line"><span class="params">            <span class="meta">@Nullable</span> Bundle options)</span> &#123;</span><br><span class="line">           <span class="comment">//...</span></span><br><span class="line">                mInstrumentation.execStartActivity(</span><br><span class="line">                    <span class="built_in">this</span>, mMainThread.getApplicationThread(), mToken, <span class="built_in">this</span>,</span><br><span class="line">                    intent, requestCode, options);</span><br><span class="line">           <span class="comment">//...</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>它的初始化则是在attach方法中注入。attach其实就是负责完成了Activity中的属性的初始化</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">attach</span><span class="params">(Context context, ActivityThread aThread,</span></span><br><span class="line"><span class="params">            Instrumentation instr, IBinder token, <span class="type">int</span> ident,</span></span><br><span class="line"><span class="params">            Application application, Intent intent, ActivityInfo info,</span></span><br><span class="line"><span class="params">            CharSequence title, Activity parent, String id,</span></span><br><span class="line"><span class="params">            NonConfigurationInstances lastNonConfigurationInstances,</span></span><br><span class="line"><span class="params">            Configuration config, String referrer, IVoiceInteractor voiceInteractor,</span></span><br><span class="line"><span class="params">            Window window, ActivityConfigCallback activityConfigCallback, IBinder assistToken,</span></span><br><span class="line"><span class="params">            IBinder shareableActivityToken)</span> &#123;</span><br><span class="line">        attachBaseContext(context);</span><br><span class="line"></span><br><span class="line">        mFragments.attachHost(<span class="literal">null</span> <span class="comment">/*parent*/</span>);</span><br><span class="line"></span><br><span class="line">        mWindow = <span class="keyword">new</span> <span class="title class_">PhoneWindow</span>(<span class="built_in">this</span>, window, activityConfigCallback);</span><br><span class="line">        mWindow.setWindowControllerCallback(mWindowControllerCallback);</span><br><span class="line">        mWindow.setCallback(<span class="built_in">this</span>);</span><br><span class="line">        mWindow.setOnWindowDismissedCallback(<span class="built_in">this</span>);</span><br><span class="line">        mWindow.getLayoutInflater().setPrivateFactory(<span class="built_in">this</span>);</span><br><span class="line">        </span><br><span class="line">        mUiThread = Thread.currentThread();</span><br><span class="line"></span><br><span class="line">        mMainThread = aThread;</span><br><span class="line">        mInstrumentation = instr;</span><br><span class="line">        mToken = token;</span><br><span class="line">        mAssistToken = assistToken;</span><br><span class="line">        mShareableActivityToken = shareableActivityToken;</span><br><span class="line">        mIdent = ident;</span><br><span class="line">        mApplication = application;</span><br><span class="line">        mIntent = intent;</span><br><span class="line">        mReferrer = referrer;</span><br><span class="line">        mComponent = intent.getComponent();</span><br><span class="line">        mActivityInfo = info;</span><br><span class="line">        mTitle = title;</span><br><span class="line">        mParent = parent;</span><br><span class="line">        mEmbeddedID = id;</span><br><span class="line">        mLastNonConfigurationInstances = lastNonConfigurationInstances;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">        mWindow.setWindowManager(</span><br><span class="line">                (WindowManager)context.getSystemService(Context.WINDOW_SERVICE),</span><br><span class="line">                mToken, mComponent.flattenToString(),</span><br><span class="line">                (info.flags &amp; ActivityInfo.FLAG_HARDWARE_ACCELERATED) != <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">if</span> (mParent != <span class="literal">null</span>) &#123;</span><br><span class="line">            mWindow.setContainer(mParent.getWindow());</span><br><span class="line">        &#125;</span><br><span class="line">        mWindowManager = mWindow.getWindowManager();</span><br><span class="line">        mCurrentConfig = config;</span><br><span class="line"></span><br><span class="line">        mWindow.setColorMode(info.colorMode);</span><br><span class="line">        mWindow.setPreferMinimalPostProcessing(</span><br><span class="line">                (info.flags &amp; ActivityInfo.FLAG_PREFER_MINIMAL_POST_PROCESSING) != <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        setAutofillOptions(application.getAutofillOptions());</span><br><span class="line">        setContentCaptureOptions(application.getContentCaptureOptions());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>熟悉Activity启动的话就会知道Activity的attach方法是在ActivityThread的 performLaunchActivity中调用的，初始化的内容比较多，想说的就是除了mWindow和mUiThread实在本地new出来的，其他的都是外部注入的，因此外部注入的对象可以只分析在当前对象中的作用，完整的功能机制后面在做分析。</p>
-</li>
-<li><p>mToken</p>
-<p>mToken是一个IBinder对象，Activity中没有调用其方法，只是把它作为一个参数传来传去，但是随便跟踪一个方法，然后找到mToken具体调用的地方，会发现，mToken其实是一个ActivityRecord 对象</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Token</span> <span class="keyword">extends</span> <span class="title class_">Binder</span> &#123;</span><br><span class="line">    <span class="meta">@NonNull</span> WeakReference&lt;ActivityRecord&gt; mActivityRef;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toString</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Token&#123;&quot;</span> + Integer.toHexString(System.identityHashCode(<span class="built_in">this</span>)) + <span class="string">&quot; &quot;</span></span><br><span class="line">                + mActivityRef.get() + <span class="string">&quot;&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>持有ActivityRecord的弱引用，因此也可以说他其实是一个ActiviytRecord对象。</p>
-</li>
-<li><p>mShareableActivityToken</p>
-<p>也是ActivityRecord中的一个属性，尚不清楚具体作用</p>
-</li>
-<li><p>mApplication</p>
-<p>mApplication不用多说，获取应用程序相关的信息</p>
-</li>
-<li><p>mIntent</p>
-<p>当前Activity相关的intent</p>
-</li>
-<li><p>mActivityInfo</p>
-<p>ActivityInfo类型对象，跟Activity一一对应</p>
-</li>
-<li><p>mMainThread</p>
-<p>ActivityThead类型，ActivityThead是应用程序的main thread，在Activity中调用了两个方法</p>
-<p>  getApplicationThread ： 返回的是一个IBinder对象，用于跨进程通信</p>
-</li>
-</ul>
-<p>​         sendActivityResult： 发送结果给Activity，onActivityResult会被调用</p>
-<ul>
-<li><p>mActivityLifecycleCallbacks</p>
-<p>主要跟Lifecycler结合使用，在生命周期改变时调用dispatchActivityXXX来完成相关接口的分发</p>
-</li>
-<li><p>mWindow，mWindowManager</p>
-<p>每个activity对应着一个窗口</p>
-</li>
-<li><p>mDecor</p>
-<p>视图的根view</p>
-</li>
-<li><p>mFragments</p>
-<p>生命周期变化时调用相关的Framgent方法，完成Fragment的生命周期调用</p>
-</li>
-<li><p>mUiThread</p>
-<p>当前Activity的运行线程，用来做主线程判断</p>
-</li>
-<li><p>mSplashScreen</p>
-<p>跟闪屏进行交互</p>
-</li>
-</ul>
-<p>以上便是Actvity中的一些重要对象，Activity的行为都跟他们息息相关。从面相对象的角度思考，清楚了Activity的交互对象，那么Activity的行为大致也就了解了，比如跟instrumentaion交互管理activity的启动，跟winow交互管理对应的窗口，也可以同SplashScreen交互，或者管理Framgent的启动等。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/05/%E6%9D%82%E8%AE%B0%EF%BC%881%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="东">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="东的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 东的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/05/%E6%9D%82%E8%AE%B0%EF%BC%881%EF%BC%89/" class="post-title-link" itemprop="url">杂记（1）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-04-05 14:58:02" itemprop="dateCreated datePublished" datetime="2023-04-05T14:58:02+08:00">2023-04-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-15 10:52:23" itemprop="dateModified" datetime="2023-04-15T10:52:23+08:00">2023-04-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em>不注重研究现状，不注重研究历史，不注重马克思列宁主义的应用，这些都是极坏的作风。</em></p>
-<p>​																	                              出自《改造我们的学习》毛泽东 </p>
-<p>了解过去，掌握规律，把握当下。无忧无虑的幻想总是轻松自在的，而面对现实的时候则总是耗费精力的，这也是为什么会感到疲惫。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 
